@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Užrašai</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        textarea, button { padding: 10px; }
+        button { cursor: pointer; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Įveskite naują užrašą</h1>
+    <form action="/uzrasai" method="POST">
+        <textarea name="uzrasas" required placeholder="Jūsų užrašas čia"></textarea>
+        <button type="submit">Pridėti užrašą</button>
+    </form>
+    <h2>Išsaugoti užrašai:</h2>
+    <ul>
+        {% for uzrasas in uzrasai %}
+            <li>{{ uzrasas.tekstas }}</li> <!-- Priklausomai nuo duomenų modelio, galbūt reikės keisti "tekstas" -->
+        {% endfor %}
+    </ul>
+</body>
+</html>
