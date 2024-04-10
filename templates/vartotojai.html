@@ -16,14 +16,14 @@
 <body>
     <h1>Įveskite vartotojo informaciją</h1>
     <form action="/vartotojai" method="POST">
-        <input type="text" name="vartotojas" required placeholder="Vartotojo vardas">
+        <input type="text" name="vardas" required placeholder="Vartotojo vardas">
         <button type="submit">Pridėti</button>
     </form>
     <h2>Vartotojų sąrašas:</h2>
     <ul>
         {% for vartotojas in vartotojai %}
-            <li>{{ vartotojas.vardas }}</li> <!-- Priklausomai nuo duomenų modelio, galbūt reikės keisti "vardas" -->
+            <li>{{ vartotojas.name }}</li> <!-- Priklausomai nuo duomenų modelio, galbūt reikės keisti "vardas" -->
         {% endfor %}
     </ul>
 </body>
-</html>
+</html>do 

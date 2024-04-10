@@ -22,7 +22,7 @@
     <h2>Išsaugoti užrašai:</h2>
     <ul>
         {% for uzrasas in uzrasai %}
-            <li>{{ uzrasas.tekstas }}</li> <!-- Priklausomai nuo duomenų modelio, galbūt reikės keisti "tekstas" -->
+            <li>{{ uzrasas.content }} - <em>sukurtas: {{ uzrasas.name }}</em></li> <!-- Adjusted to display the username -->
         {% endfor %}
     </ul>
 </body>
