@@ -17,12 +17,13 @@
     <h1>Įveskite naują užrašą</h1>
     <form action="/uzrasai" method="POST">
         <textarea name="uzrasas" required placeholder="Jūsų užrašas čia"></textarea>
+        <input type="hidden" name="user_name" value="{{ session.username }}">
         <button type="submit">Pridėti užrašą</button>
     </form>
     <h2>Išsaugoti užrašai:</h2>
     <ul>
         {% for uzrasas in uzrasai %}
-            <li>{{ uzrasas.content }} - <em>sukurtas: {{ uzrasas.name }}</em></li> <!-- Adjusted to display the username -->
+            <li>{{ uzrasas.content }} - <em>sukurtas: {{ uzrasas.created_at }}</em> by {{ uzrasas.user_name }}</li>
         {% endfor %}
     </ul>
 </body>

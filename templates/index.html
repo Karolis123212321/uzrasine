@@ -5,7 +5,11 @@
     <title>Welcome</title>
 </head>
 <body>
-    <h1>Welcome to the application!</h1>
+    <h1>Sveiki atvykę į užrašinę</h1>
+    <form action="/setuser" method="POST">
+        <input type="text" name="username" placeholder="Enter your username">
+        <button type="submit">Set User</button>
+    </form>
     <a href="/vartotojai"><button>Users Tab</button></a>
     <a href="/uzrasai"><button>Notepad Tab</button></a>
 </body>
