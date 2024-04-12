@@ -1,10 +1,21 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session, g
+from datetime import datetime
 
 DATABASE = 'application.db'
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Reikalingas saugoti sesijos duomenis
+
+@app.context_processor
+def inject_user():
+    user = session.get('username', None)
+    return dict(current_user=user)
+def format_datetime(value, format='%Y-%m-%d %H:%M:%S'):
+    date = datetime.strptime(value, format)
+    return date.strftime(format)
+
+app.jinja_env.filters['datetime'] = format_datetime
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -34,6 +45,24 @@ def index():
 def setuser():
     session['username'] = request.form['username']
     return redirect(url_for('index'))
+
+
+
+@app.route('/vartotojai', defaults={'user_name': None})
+@app.route('/vartotojai/<user_name>')
+def list_users(user_name):
+    db = get_db()
+    user_list_cur = db.execute('SELECT DISTINCT user_name FROM notes ORDER BY user_name')
+    users = user_list_cur.fetchall()
+
+    notes = None
+    if user_name:
+        notes_cur = db.execute('SELECT content, created_at FROM notes WHERE user_name = ? ORDER BY created_at DESC', (user_name,))
+        notes = notes_cur.fetchall()
+
+    return render_template('vartotojai.html', users=users, notes=notes, user_name=user_name)
+
+
 
 @app.route('/uzrasai', methods=['GET', 'POST'])
 def uzrasai():

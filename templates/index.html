@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Sveiki atvykę į užrašinę</h1>
-    <form action="/setuser" method="POST">
-        <input type="text" name="username" placeholder="Enter your username">
-        <button type="submit">Set User</button>
-    </form>
-    <a href="/vartotojai"><button>Users Tab</button></a>
-    <a href="/uzrasai"><button>Notepad Tab</button></a>
+    <div class="main-container">
+        <h1 class="main-heading">Sveiki atvykę į užrašinę {{ current_user }}</h1>
+        <div class="user-form">
+            <form action="/setuser" method="POST">
+                <input type="text" name="username" placeholder="Įveskite savo vardą" class="username-input">
+                <button type="submit" class="set-user-btn">Nustatyti vartotoją</button>
+            </form>
+        </div>
+        <div class="navigation">
+            <a href="/vartotojai" class="nav-btn users-tab">Vartotojų skirtukas</a>
+            <a href="/uzrasai" class="nav-btn notepad-tab">Užrašų skirtukas</a>
+        </div>
+    </div>
 </body>
 </html>
